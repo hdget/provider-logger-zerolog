@@ -7,7 +7,7 @@ package pkg
 
 import (
 	"github.com/hdget/common/intf"
-	"github.com/hdget/hdutils/logger"
+	"github.com/hdget/utils/logger"
 	"github.com/rs/zerolog"
 	"log"
 	"strings"
