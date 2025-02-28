@@ -6,11 +6,15 @@ import (
 	"go.uber.org/fx"
 )
 
+const (
+	providerName = "logger-zerolog"
+)
+
 var Capability = &types.Capability{
 	Category: types.ProviderCategoryLogger,
-	Name:     types.ProviderNameLoggerZerolog,
+	Name:     providerName,
 	Module: fx.Module(
-		string(types.ProviderNameLoggerZerolog),
+		providerName,
 		fx.Provide(pkg.New),
 	),
 }

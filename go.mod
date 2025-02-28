@@ -3,7 +3,7 @@ module github.com/hdget/provider-logger-zerolog
 go 1.23.1
 
 require (
-	github.com/hdget/common v0.0.1
+	github.com/hdget/common v0.0.3
 	github.com/hdget/utils v0.0.1
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/pkg/errors v0.9.1
@@ -14,7 +14,6 @@ require (
 require (
 	github.com/BurntSushi/toml v1.4.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/jmoiron/sqlx v1.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	go.uber.org/dig v1.18.0 // indirect
