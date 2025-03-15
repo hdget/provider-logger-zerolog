@@ -3,10 +3,11 @@
 // @Description  zerolog implementation of logger capability
 // @Author  Ryan Fan 2021-06-09
 // @Update  Ryan Fan 2021-06-09
-package pkg
+package zerolog
 
 import (
 	"github.com/hdget/common/intf"
+	"github.com/hdget/common/types"
 	"github.com/hdget/utils/logger"
 	"github.com/rs/zerolog"
 	"log"
@@ -65,11 +66,11 @@ func New(configProvider intf.ConfigProvider) (intf.LoggerProvider, error) {
 	return provider, nil
 }
 
-func (p zerologLoggerProvider) Init(args ...any) error {
-	panic("implement me")
+func (p *zerologLoggerProvider) GetCapability() types.Capability {
+	return Capability
 }
 
-func (p zerologLoggerProvider) GetStdLogger() *log.Logger {
+func (p *zerologLoggerProvider) GetStdLogger() *log.Logger {
 	return log.New(p.logger, "stdlog: ", log.Lshortfile|log.Ldate|log.Ltime)
 }
 

@@ -1,4 +1,4 @@
-package pkg
+package zerolog
 
 import (
 	"fmt"

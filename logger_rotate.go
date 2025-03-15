@@ -1,4 +1,4 @@
-package pkg
+package zerolog
 
 import (
 	"github.com/natefinch/lumberjack"
