@@ -3,7 +3,7 @@ module github.com/hdget/provider-logger-zerolog
 go 1.23.1
 
 require (
-	github.com/hdget/common v0.0.5
+	github.com/hdget/common v0.0.10
 	github.com/hdget/utils v0.0.1
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/pkg/errors v0.9.1
