@@ -1,6 +1,7 @@
 package zerolog
 
 import (
+	"github.com/hdget/common/constant"
 	"github.com/natefinch/lumberjack"
 	"io"
 	"os"
@@ -28,7 +29,7 @@ func newRotateLogger(conf *zerologProviderConfig) (io.Writer, error) {
 
 	// 创建日志目录
 	fileSuffix := path.Ext(conf.Filename)
-	filename := strings.TrimSuffix(conf.Filename, fileSuffix)
+	filename := normalize(strings.TrimSuffix(conf.Filename, fileSuffix))
 	rotateDir := path.Join(dir, filename)
 	err := os.MkdirAll(rotateDir, 0744)
 	if err != nil {
@@ -36,10 +37,17 @@ func newRotateLogger(conf *zerologProviderConfig) (io.Writer, error) {
 	}
 
 	return &lumberjack.Logger{
-		Filename:   filepath.Join(rotateDir, conf.Filename),
+		Filename:   filepath.Join(rotateDir, filename+fileSuffix),
 		MaxSize:    conf.Rotate.MaxSize,   // The maximum size in megabytes of the log file before it gets rotated, It defaults to 100 megabytes.
 		MaxAge:     conf.Rotate.MaxAge,    // In days before deleting the file
 		MaxBackups: conf.Rotate.MaxBackup, // The maximum number of old log files to retain.
 		Compress:   conf.Rotate.Compress,  // Compress the rotated log files, false by default.
 	}, nil
+}
+
+func normalize(input string) string {
+	if namespace, exists := os.LookupEnv(constant.EnvKeyNamespace); exists {
+		return namespace + "_" + input
+	}
+	return input
 }
