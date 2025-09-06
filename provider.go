@@ -6,7 +6,6 @@
 package zerolog
 
 import (
-	"github.com/hdget/common/intf"
 	"github.com/hdget/common/types"
 	"github.com/hdget/utils/logger"
 	"github.com/rs/zerolog"
@@ -24,7 +23,7 @@ const (
 )
 
 // New initialize zerolog instance
-func New(configProvider intf.ConfigProvider) (intf.LoggerProvider, error) {
+func New(configProvider types.ConfigProvider) (types.LoggerProvider, error) {
 	c, err := newConfig(configProvider)
 	if err != nil {
 		return nil, err
