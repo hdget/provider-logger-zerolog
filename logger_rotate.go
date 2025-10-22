@@ -1,14 +1,15 @@
 package zerolog
 
 import (
-	"github.com/hdget/common/constant"
-	"github.com/natefinch/lumberjack"
 	"io"
 	"os"
 	"path"
 	"path/filepath"
 	"runtime"
 	"strings"
+
+	"github.com/hdget/common/namespace"
+	"github.com/natefinch/lumberjack"
 )
 
 func newRotateLogger(conf *zerologProviderConfig) (io.Writer, error) {
@@ -29,7 +30,7 @@ func newRotateLogger(conf *zerologProviderConfig) (io.Writer, error) {
 
 	// 创建日志目录
 	fileSuffix := path.Ext(conf.Filename)
-	filename := normalize(strings.TrimSuffix(conf.Filename, fileSuffix))
+	filename := namespace.Encapsulate(strings.TrimSuffix(conf.Filename, fileSuffix))
 	rotateDir := path.Join(dir, filename)
 	err := os.MkdirAll(rotateDir, 0744)
 	if err != nil {
@@ -43,11 +44,4 @@ func newRotateLogger(conf *zerologProviderConfig) (io.Writer, error) {
 		MaxBackups: conf.Rotate.MaxBackup, // The maximum number of old log files to retain.
 		Compress:   conf.Rotate.Compress,  // Compress the rotated log files, false by default.
 	}, nil
-}
-
-func normalize(input string) string {
-	if namespace, exists := os.LookupEnv(constant.EnvKeyNamespace); exists {
-		return namespace + "_" + input
-	}
-	return input
 }
