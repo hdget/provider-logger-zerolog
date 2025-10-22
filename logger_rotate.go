@@ -1,15 +1,14 @@
 package zerolog
 
 import (
+	"github.com/hdget/common/namespace"
+	"github.com/natefinch/lumberjack"
 	"io"
 	"os"
 	"path"
 	"path/filepath"
 	"runtime"
 	"strings"
-
-	"github.com/hdget/common/namespace"
-	"github.com/natefinch/lumberjack"
 )
 
 func newRotateLogger(conf *zerologProviderConfig) (io.Writer, error) {
